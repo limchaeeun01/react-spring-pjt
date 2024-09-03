@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="react.spring.react_spring_pjt.bbs.dao.BbsMapper">
+    <select id="findAllRow"
+            resultType="bbsResponseDTO">
+        select ID, TITLE, CONTENT
+        from TB_BBS
+    </select>
+
+    <insert id="insertRow"
+            parameterType ="bbsRequestDTO">
+        insert into TB_BBS(TITLE, CONTENT)
+        values(#{title}, #{content})
+    </insert>
+
+    <select id="findRow"
+            parameterType="java.util.HashMap"
+            resultType="bbsResponseDTO">
+        select ID, TITLE, CONTENT
+        from TB_BBS
+        WHERE ID = #{id}
+    </select>
+
+    <select id="findByIdComment"
+            parameterType="java.util.HashMap"
+            resultType="commentResponseDTO">
+        select ID, CONTENT, BBSID
+        from TB_COMMENT
+        WHERE BBSID = #{id}
+    </select>
+
+    <insert id="insertCommentRow"
+            parameterType ="commentRequestDTO">
+        insert into TB_COMMENT(CONTENT, BBSID)
+        values(#{content}, #{bbsId})
+    </insert>
+
+    <delete id="deleteRow"
+            parameterType="java.util.HashMap">
+        DELETE FROM TB_BBS
+        WHERE ID = #{id}
+    </delete>
+
+    <update id="updateRow"
+            parameterType="bbsRequestDTO">
+        UPDATE TB_BBS
+        SET TITLE = #{title},
+        CONTENT = #{content}
+        WHERE ID = #{id}
+    </update>
+</mapper>
