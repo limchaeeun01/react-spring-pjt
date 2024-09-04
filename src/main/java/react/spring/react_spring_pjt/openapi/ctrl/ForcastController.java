@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import react.spring.react_spring_pjt.openapi.service.ForecastService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ForcastController {
 
     @Value("${openApi.serviceKey}")
@@ -35,7 +37,7 @@ public class ForcastController {
     @Autowired
     private ForecastService forecastService;
 
-    @GetMapping("forcast")
+    @GetMapping("/forcast")
     public ResponseEntity<List<ForecastItemDTO>> callForecastApi(
             @RequestParam(value = "base_time") String baseTime,
             @RequestParam(value = "base_date") String baseDate,
@@ -49,11 +51,11 @@ public class ForcastController {
         System.out.println("params = " + baseTime + "\t" + baseDate + "\t" + beachNum);
 
         String requestURL = callBackUrl
-                +"?serviceKey="+serviceKey
-                +"&dataType="+dataType
-                +"&base_date="+baseDate
-                +"&base_time="+baseTime
-                +"&beach_num="+beachNum;
+                + "?serviceKey=" + serviceKey
+                + "&dataType=" + dataType
+                + "&base_date=" + baseDate
+                + "&base_time=" + baseTime
+                + "&beach_num=" + beachNum;
 
         System.out.println("url check = " + requestURL);
 

@@ -12,7 +12,7 @@ public enum CategoryCode {
     TMX("낮 최고기온", "C"),
     UUU("풍속(동서성분)", "m/s"),
     VVV("풍속(남북성분)", "m/s"),
-    WAV("파고", "M"),
+    WAV("파도", "M"),
     VEC("풍향", "deg"),
     WSD("풍속", "m/s"),
     LGT("가시거리", "km");
